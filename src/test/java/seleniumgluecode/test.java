@@ -3,11 +3,16 @@ package seleniumgluecode;
 import static org.testng.AssertJUnit.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -28,58 +33,79 @@ public class test {
 	  }
 
 	@When("^I access News and Populars Topics section$")
-	public void i_access_news_and_populars_topics_section() throws Throwable {
-		section=driver.findElement(By.xpath("//section[2]header/h2"));
-		
-	    throw new PendingException();
-	}
-
-	@When("^some other action$")
-	public void some_other_action() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
-	}
-
-	@When("^yet another action$")
-	public void yet_another_action() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void i_access_news_and_populars_topics_section() {
+		section=driver.findElement(By.cssSelector(".features > header:nth-child(1) > h2:nth-child(1)"));
 	}
 
 	@Then("^News and Popular Topics section is displayed$")
-	public void news_and_popular_topics_section_is_displayed() throws Throwable {
-		assertEquals("News & Populars Topics",section.getText());
-	    throw new PendingException();
+	public void news_and_popular_topics_section_is_displayed(){
+		
+		assertEquals("New & Popular Topics",section.getText());
 	}
 
-	@Then("^check more outcomes$")
-	public void check_more_outcomes() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Then("^Entertainment is displayed$")
+	public void entertainment_is_displayed() {
+		section=driver.findElement(By.linkText("Entertainment"));
+		assertEquals("Entertainment",section.getText());
 	}
 
-	@Given("^I want to write a step with name(\\d+)$")
-	public void i_want_to_write_a_step_with_name(int arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Then("Health is displayed$")
+	public void Health_is_displayed() {
+		section=driver.findElement(By.linkText("Health"));
+		assertEquals("Health",section.getText());
 	}
-
-	@When("^I check for the (\\d+) in step$")
-	public void i_check_for_the_in_step(int arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Then("^Money is displayed$")
+	public void money_is_displayed() {
+		section=driver.findElement(By.linkText("Money"));
+		assertEquals("Money",section.getText());
 	}
-
-	@Then("^I verify the success in step$")
-	public void i_verify_the_success_in_step() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Then("^Technology is displayed$")
+	public void Technology_is_displayed() {
+		section=driver.findElement(By.linkText("Technology"));
+		assertEquals("Technology",section.getText());
 	}
+	@Then("^Beauty and Fashion is displayed$")
+	public void beauty_and_fashion_is_displayed() {
+		section=driver.findElement(By.linkText("Beauty & Fashion"));
+		assertEquals("Beauty & Fashion",section.getText());
+	}	
+	
+	@Then("^Home and Garden is displayed$")
+	public void home_and_garden_is_displayed() {
+		section=driver.findElement(By.linkText("Home & Garden"));
+		assertEquals("Home & Garden",section.getText());
+	}	
+	@When("^I access article Other Names for a Man Purse$")
+	public void i_access_article_other_names_for_a_man_purse() {
+		section=driver.findElement(By.linkText("Other Names for a Man Purse"));
+		section.click();
+	}
+	
+	
+	@When("^I add a comment in the article$")
+	public void i_add_a_comment_in_the_article() {
+		section=driver.findElement(By.xpath("//*[@id=\"title-1\"]/main/aside/div[1]/div[2]/button"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", section);
+		/*Actions actions = new Actions(driver);
+		actions.moveToElement(section);
+		actions.perform();
+		*/
+		section.click();
+		WebElement element = (new WebDriverWait(driver, 10))
+				   .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"form\"]/form/div/div[3]/div[2]/div/div[1]/div[1]/p")));
 
-	@Then("^I verify the Fail in step$")
-	public void i_verify_the_Fail_in_step() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+		element.sendKeys("Cool purses photos");
+	}
+	
+	
+	@When("^I should see next article$")
+	public void i_should_see_next_article() {
+		section=driver.findElement(By.xpath("/html/body/div[3]"));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", section);
+	}
+	@After
+	public void clean_up() {
+		driver.quit();
 	}
 
 }

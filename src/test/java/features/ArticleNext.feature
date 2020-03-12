@@ -1,4 +1,4 @@
-#Author: xavier.cuadrado@gmail.com
+#Author: your.email@your.domain.com
 #Keywords Summary :
 #Feature: List of scenarios.
 #Scenario: Business rule through list of steps with arguments.
@@ -18,12 +18,10 @@
 #Sample Feature Definition Template
 @tag
 Feature: Load Lovetoknow page
-  I want to load lovetoknowpage
+  I want to add an article comment
 
   @tag1
-  Scenario: Lovetoknow page is loaded
+  Scenario: Add an article comment
     When I load LoveToKnow page
-    Then Page title is displayed
-    
- 
-    
+    When I access article Other Names for a Man Purse
+    Then I should see next article 

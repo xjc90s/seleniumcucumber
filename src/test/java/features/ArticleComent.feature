@@ -1,4 +1,4 @@
-#Author: your.email@your.domain.com
+#Author: xavier.cuadrado@gmail.com
 #Keywords Summary :
 #Feature: List of scenarios.
 #Scenario: Business rule through list of steps with arguments.
@@ -15,19 +15,16 @@
 #<> (placeholder)
 #""
 ## (Comments)
-#Sample Feature Definition Template     /html/body/div[1]/main/section[2]/header/h2
+#Sample Feature Definition Template
 @tag
-Feature: Check News & Popular Topics
-  I want to check News & Popular Topics and links
+Feature: Load Lovetoknow page
+  I want to add an article comment
 
   @tag1
-  Scenario: News & Popular Topics section
+  Scenario: Add an article comment
     When I load LoveToKnow page
-    When I access News and Populars Topics section
-    Then News and Popular Topics section is displayed
-    Then Beauty and Fashion is displayed
-    Then Entertainment is displayed
-    Then Money is displayed
-    Then Health is displayed
-    Then Technology is displayed
-    Then Home and Garden is displayed
+    When I access article Other Names for a Man Purse
+    When I add a comment in the article
+    Then Comment is added
+ 
+    
